@@ -1,7 +1,7 @@
 <div class="wrap">
     <h1>FluentC Settings</h1>
-    <p>To use the FluentC widget, you need a paid premium subscription. If you haven't signed up yet, please visit <a href="https://dashboard.fluentc.io/signup" target="_blank">https://dashboard.fluentc.io/signup</a> to create an account.</p>
-    <p>After signing up and subscribing to the premium plan, create a widget in the FluentC dashboard and copy your widget ID into the box below.</p>
+    <p>To use the FluentC widget, you need FluentC Credits. If you haven't signed up yet, please visit <a href="https://dashboard.fluentc.io/signup" target="_blank">https://dashboard.fluentc.io/signup</a> to create an account.</p>
+    <p>After signing up, create a widget in the FluentC dashboard and copy your widget ID into the box below. Find detailed Widget setup directions at <a href="https://docs.fluentc.io/docs/dashboard/web-widget" target="_blank">https://docs.fluentc.io/docs/dashboard/web-widget</a> </p>
     <form method="post">
         <table class="form-table">
             <tbody>
