@@ -20,5 +20,5 @@
         </table>
         <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="Save Changes"></p>
     </form>
-    <p>For any assistance please contact FluentC <br /> <br /><a href="https://dashboard.fluentc.io/signup" target="_blank">Click here to visit FluentC contact page</a></p>
+    <p>For any assistance please contact FluentC <br /> <br /><a href="https://www.fluentc.io/contact/" target="_blank">Click here to visit FluentC contact page</a></p>
 </div>
