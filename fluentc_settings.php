@@ -2,7 +2,7 @@
     <h1>FluentC Settings</h1>
     <p>To use the FluentC widget, you need FluentC Credits. If you haven't signed up yet, please visit <a href="https://dashboard.fluentc.io/signup" target="_blank">https://dashboard.fluentc.io/signup</a> to create an account.</p>
     <p>After signing up, create a widget in the FluentC dashboard and copy your widget ID into the box below. Find detailed Widget setup directions at <a href="https://docs.fluentc.io/docs/dashboard/web-widget" target="_blank">https://docs.fluentc.io/docs/dashboard/web-widget</a> </p>
-    <form method="post">
+  <form method="post">
         <table class="form-table">
             <tbody>
                 <tr>
@@ -20,4 +20,5 @@
         </table>
         <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="Save Changes"></p>
     </form>
+    <p>For any assistance please contact FluentC <br /> <br /><a href="https://www.fluentc.io/contact/" target="_blank">Click here to visit FluentC contact page</a></p>
 </div>
