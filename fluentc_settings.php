@@ -19,6 +19,9 @@
             </tbody>
         </table>
         <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="Save Changes"></p>
-    </form>
-    <p>For any assistance please contact FluentC <br /> <br /><a href="https://www.fluentc.io/contact/" target="_blank">Click here to visit FluentC contact page</a></p>
+    </form>  
+<?php
+$this->content_types_page();
+?>
+    <p>For any assistance please contact FluentC | <a href="https://www.fluentc.io/contact/" target="_blank">Click here to visit FluentC contact page</a></p>
 </div>
