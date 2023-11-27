@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: FluentC Tranlsation
+ * Plugin Name: FluentC Translation
  * Plugin URI: https://github.com/fluentc/wordpress-plugin
  * Description: A plugin that enables website owners to easily install the FluentC web widget on their WordPress site.
  * Version: 1.1.0
