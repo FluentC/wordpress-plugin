@@ -1,0 +1,9 @@
+{"autoload": {
+    "psr-4": {
+        "FluentC\\": "src/",
+        "FluentC\\Services\\" : "src/services/",
+        "FluentC\\Actions\\" : "src/actions/",
+        "FluentC\\Models\\" : "src/models/"
+    }
+}
+}

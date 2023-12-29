@@ -16,36 +16,21 @@ class FluentCPlugin {
          */
         $this->api_key = null;
         $this->dropdown = false;
+       // $this->add_menu();
     }
-
-    public function activate() {
-        /**
-         * Called when the plugin is activated and sets up any necessary database tables or options
-         */
-        $this->add_menu();
-    }
-
-    public function deactivate() {
-        /**
-         * Called when the plugin is deactivated and cleans up any database tables or options
-         */
-        $this->remove_menu();
-    }
-
     public function add_menu() {
         /**
          * Adds a menu item to the WordPress admin dashboard for the plugin settings
          */
         add_menu_page('FluentC Settings', 'FluentC', 'manage_options', 'fluentc-settings', array($this, 'settings_page'));
     }
-
+    
     public function remove_menu() {
         /**
          * Removes the menu item from the WordPress admin dashboard for the plugin settings
          */
         remove_menu_page('fluentc-settings');
     }
-
     public function settings_page() {
         /**
          * Displays the plugin settings page in the WordPress admin dashboard
@@ -90,23 +75,30 @@ class FluentCPlugin {
     }
     
 
-    public function insert_fluentc_widget() {
+    
+    public function get_languages($fluentc) {
         /**
-         * Inserts the FluentC web widget code into the header of the site and the "<div id="fluentc-widget"></div>" in the top of the content body
+         * Fetch languages from FluentC
          */
-        $header_code = '<script src="https://widget.fluentc.io/fluentcWidget.min.js"></script>' . "\n";
-        $header_code .= '<script>' . "\n";
-        $header_code .= '    document.addEventListener("DOMContentLoaded", function () {' . "\n";
-        $header_code .= '        f = new fluentcWidget({widgetID: "' . $this->get_settings() . '"});' . "\n";
-        $header_code .= '        f.setupWidget(\'fluentc-widget\');' . "\n";
-        $header_code .= '    });' . "\n";
-        $header_code .= '</script>' . "\n";
+        $api_key = $this->get_settings();
+		$option = $fluentc->fetchWidgetOptions($api_key);
+     	$environmentID = $option->data->fetchWidgetOptions->environmentID;
+		$data = $fluentc->getAvailableLanguages($environmentID);
+		// Extract the codes
+$codes = [];
+foreach ($data->data->getAvailableLanguages->body as $language) {
+    $codes[] = $language->code;
+}
 
-        $body_code = '<div id="fluentc-widget"></div>' . "\n";
-
-        return array($header_code, $body_code);
+// $codes now contains all the language codes
+print_r($codes);
+			$structure = get_option( 'permalink_structure' );
+		echo $structure;
+        return  $language;
     }
-
+    public function get_current_language() {
+        return "en";
+    }
     public function get_all_content_types() {
         /**
          * Fetches all registered content types (post types) in this WordPress installation
@@ -199,4 +191,6 @@ class FluentCPlugin {
         wp_reset_postdata();
         return $character_counts;
     }
+
+    
 }

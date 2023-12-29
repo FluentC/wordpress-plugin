@@ -1,30 +1,43 @@
 <?php
+
 /**
  * Plugin Name: FluentC Translation
  * Plugin URI: https://github.com/fluentc/wordpress-plugin
  * Description: A plugin that enables website owners to easily install the FluentC web widget on their WordPress site.
- * Version: 1.1.0
+ * Version: 1.2.0
  * Author: FluentC
  * Author URI: https://www.fluentc.io
  * License: GPL2
  */
+define( 'FLUENTC_DIR', __DIR__ );
+define( 'FLUENTC_SLUG', 'fluentc_translation' );
+
 
 require_once('fluentc_plugin.php');
 
 $fluentc_plugin = new FluentCPlugin();
 
-register_activation_hook(__FILE__, array($fluentc_plugin, 'activate'));
-register_deactivation_hook(__FILE__, array($fluentc_plugin, 'deactivate'));
+function activate() {
+    /**
+     * Called when the plugin is activated and sets up any necessary database tables or options
+     */
+    require_once __DIR__ . '/vendor/autoload.php';
+    require_once __DIR__ . '/bootstrap.php';
+    
+   // $fluentc_plugin->add_menu();
+   Context_FluentC::fluentc_get_context()->activate_plugin();
+   flush_rewrite_rules();
+}
 
-add_action('the_content', function ($content) use ($fluentc_plugin) {
-    $fluentc_widget = $fluentc_plugin->insert_fluentc_widget();
-    if($fluentc_plugin->get_insert_language_dropdown()){
-        $content = $fluentc_widget[0] . $fluentc_widget[1] . $content; 
-    }else{
-        $content = $fluentc_widget[0] . $content; // Append the widget to the content
-    }
-    return $content;
-});
+function deactivate() {
+    /**
+     * Called when the plugin is deactivated and cleans up any database tables or options
+     */
+    flush_rewrite_rules();
+  //  $fluentc_plugin->remove_menu();
+}
+
+
 
 add_action('admin_menu', function() use ($fluentc_plugin) {
     add_menu_page(
@@ -44,3 +57,23 @@ add_filter('template_include', function($template) {
     }
     return $template;
 });
+
+register_activation_hook(__FILE__, 'activate');
+register_deactivation_hook(__FILE__,  'deactivate');
+
+
+function fluentc_plugin_loaded() {
+    require_once __DIR__ . '/vendor/autoload.php';
+    require_once __DIR__ . '/bootstrap.php';
+		fluentc_init();
+	
+}
+
+add_action( 'plugins_loaded', 'fluentc_plugin_loaded' , 10);
+
+/*
+
+
+
+
+*/
