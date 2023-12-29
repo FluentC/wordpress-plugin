@@ -25,6 +25,9 @@ class Links implements Hooks
         add_filter('post_link', array($this, 'add_language_code_to_permalink'), 10, 3);
         add_filter('page_link', array($this, 'add_language_code_to_permalink'), 10, 3);
         add_filter('post_type_link', array($this, 'add_language_code_to_permalink'), 10, 3);
+        add_filter('category_link', array($this, 'add_language_code_to_permalink'), 10, 3);
+        add_filter('tag_link', array($this, 'add_language_code_to_permalink'), 10, 3);
+        add_filter('author_link', array($this, 'add_language_code_to_permalink'), 10, 3);
         add_filter('query_vars', array($this, 'language_var'), 10, 3);
         add_action('init', array($this, 'url_rewrite_rule'), 10, 3);
     }
