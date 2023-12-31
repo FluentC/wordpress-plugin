@@ -9,30 +9,36 @@ if (!defined('ABSPATH')) {
 
 class Connect
 {
+    private $fluentc_cache;
+
     public function __construct()
     {
-
+        $this->fluentc_cache = new Cache();
     }
     function getLanguageList($widgetID)
-    {   
+    {
         //Add Caching Key
-
-        
         $languages = [];
-        //If Widget ID is Set
-        $widget = $this->fetchWidgetOptions($widgetID);
+        if ($this->fluentc_cache->get('language_list')) {
+            $languages = $this->fluentc_cache->get('language_list');
+        } else {
 
-        // Not adding the default language
-        //$languages[] = $widget->data->fetchWidgetOptions->sourceLanguage;
+            //If Widget ID is Set
+            $widget = $this->fetchWidgetOptions($widgetID);
 
-        $getAllLanguages = $this->getAvailableLanguages($widget->data->fetchWidgetOptions->environmentID);
-        // fetchWidget WidgetID
-        foreach ($getAllLanguages->data->getAvailableLanguages->body as $key => $value) {
-            $languages[] = $value->code;
+            // Not adding the default language
+            //$languages[] = $widget->data->fetchWidgetOptions->sourceLanguage;
+
+            $getAllLanguages = $this->getAvailableLanguages($widget->data->fetchWidgetOptions->environmentID);
+            // fetchWidget WidgetID
+            foreach ($getAllLanguages->data->getAvailableLanguages->body as $key => $value) {
+                $languages[] = $value->code;
+            }
+            // fetch available languages Environment ID
+            $this->fluentc_cache->set('language_list', $languages);
+
         }
-        // fetch available languages Environment ID
         return $languages;
-
     }
     function fetchWidgetOptions($widgetID)
     {

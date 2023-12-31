@@ -32,7 +32,7 @@ class Links implements Hooks
         add_action('init', array($this, 'url_rewrite_rule'), 10, 3);
     }
 
-    function add_language_code_to_permalink($permalink, $post, $leavename)
+    function add_language_code_to_permalink($permalink, $post)
     {
         // Assuming you have a function that returns the current language code
         $language_code = get_query_var('fluentc_language');

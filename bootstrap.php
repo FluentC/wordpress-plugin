@@ -38,7 +38,7 @@ abstract class Context_FluentC {
 		// If PHP > 5.6, it will be possible to autoload the classes without listing them.
 		$services = array(
 			'\FluentC\Services\Cache',
-			'\FluentC\Services\URL',
+			'\FluentC\Services\Url',
 			'\FluentC\Services\Frontpage',  
 			'\FluentC\Services\Widget',
 			'\FluentC\Services\Connect',
@@ -49,7 +49,8 @@ abstract class Context_FluentC {
 
         $actions = array(
 			'FluentC\Actions\Insert',
-			'FluentC\Actions\Links'
+			'FluentC\Actions\Links',
+			'FluentC\Actions\Aioseo'
 
 		);
 
