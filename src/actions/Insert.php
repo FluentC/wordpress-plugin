@@ -26,8 +26,20 @@ class Insert implements Hooks
 
         add_action('wp_head', array($this, 'insert_fluentc_widget'));
         add_action('wp_head', array($this, 'insert_hrefLang'));
+        add_filter('language_attributes', array($this, 'lang_attribute'), 10, 2);
+        
     }
-
+    public function lang_attribute($output, $doctype) {
+        $language_code = get_query_var('fluentc_language');
+    
+        if ($language_code) {
+            // If language code is set, modify the output accordingly
+            return $output . ' lang="' . esc_attr($language_code) . '"';
+        } else {
+            // If no language code, return the default output
+            return $output;
+        }
+    }
     public function insert_fluentc_widget()
     {
         $language_code = get_query_var('fluentc_language');
