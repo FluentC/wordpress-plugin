@@ -29,24 +29,31 @@ if ( ! defined( 'ABSPATH' ) ) {
         /**
          * Inserts the FluentC web widget code into the header of the site and the "<div id="fluentc-widget"></div>" in the top of the content body
          */
-		if($default == false){
-		$init_lang = ', { defaultLanguage: "' . $lang . '"}';	
-		} else {
-			$init_lang = '';
-		};
-         
-        $header_code = '<script src="https://widget.fluentc.io/fluentcWidget.min.js"></script>' . "\n";
-        $header_code .= '<script>' . "\n";
-        $header_code .= '    document.addEventListener("DOMContentLoaded", function () {' . "\n";
-        $header_code .= '        f = new fluentcWidget({widgetID: "e3f630f5-0093-4dec-a1e3-6177cc3f8de4"});' . "\n";
-        $header_code .= '        f.setupWidget(\'fluentc-widget\' '.$init_lang.');' . "\n";
-        $header_code .= '    });' . "\n";
-        $header_code .= '</script>' . "\n";
-
-        $body_code = '<div id="fluentc-widget"></div>' . "\n";
-
-        return array($header_code, $body_code);
+        $widgetapikey = get_option('fluentc_api_key');
+        if ($widgetapikey) {
+            if($default == false){
+                $init_lang = ', { defaultLanguage: "' . $lang . '"}';	
+                } else {
+                    $init_lang = '';
+                };
+                 
+                $header_code = '<script src="https://widget.fluentc.io/fluentcWidget.min.js"></script>' . "\n";
+                $header_code .= '<script>' . "\n";
+                $header_code .= '    document.addEventListener("DOMContentLoaded", function () {' . "\n";
+                $header_code .= '        f = new fluentcWidget({widgetID: "'.$widgetapikey.'", updateWordpressUrl: true});' . "\n";
+                $header_code .= '        f.setupWidget(\'fluentc-widget\' '.$init_lang.');' . "\n";
+                $header_code .= '    });' . "\n";
+                $header_code .= '</script>' . "\n";
+        
+                $body_code = '<div id="fluentc-widget"></div>' . "\n";
+        
+                return array($header_code, $body_code);
+        } else {
+            return array("FluentC API Not Set", "FluentC API Not Set");
+		
     }
 
 
 }
+
+ }
